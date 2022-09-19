@@ -1,18 +1,34 @@
 {
-  "name": "line-counter",
+  "name": "nline",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "description": "A nice project line counter",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules src/index.ts",
-    "build": "tsc ."
+    "test": "jest --config jestconfig.json",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "line",
+    "counter"
+  ],
+  "author": "FranciscoZhou",
   "license": "ISC",
   "devDependencies": {
     "@types/glob": "^8.0.0",
+    "@types/jest": "^29.0.3",
+    "jest": "^29.0.3",
+    "ts-jest": "^29.0.1",
     "ts-node-dev": "^2.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.8.3"
   },
   "dependencies": {
